@@ -131,6 +131,8 @@ if ($isCli) {
     require __DIR__ . '/bootstrap_cli.php';
 }
 
+require __DIR__ . '/r123.php';
+
 /*
  * Set the full base URL.
  * This URL is used as the base of all absolute links.

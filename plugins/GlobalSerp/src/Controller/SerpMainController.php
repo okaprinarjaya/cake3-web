@@ -2,26 +2,30 @@
 namespace GlobalSerp\Controller;
 
 use GlobalSerp\Controller\AppController;
+use Cake\View\CellTrait;
 
 class SerpMainController extends AppController
 {
+    use CellTrait;
+
     public $helpers = ['LayoutPartsHlp' => ['header_menubar_type' => 'multibar']];
 
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('GlobalSerp.ListingsCom');
+        $this->loadComponent('GlobalSerp.GlobalSerpParamsParseCom');
     }
 
     public function beforeRender(\Cake\Event\Event $event)
     {
         parent::beforeRender($event);
-        $this->viewBuilder()->layout('GlobalSerp/serp-main');
+        $this->viewBuilder()->helpers(['GlobalSerp.GlobalSerpParamsParseHlp']);
+        $this->viewBuilder()->layout('GlobalSerp/global-serp-serp-main');
     }
 
     public function index()
     {
-        $articles = $this->ListingsCom->setupListings();
-        $this->set('articles', $articles);
+        $listings_cell = $this->cell('GlobalSerp.SerpMainListings', [['rows_per_page' => 6]]);
+        $this->set(compact('listings_cell'));
     }
 }

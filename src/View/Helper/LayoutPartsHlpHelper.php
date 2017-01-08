@@ -2,7 +2,6 @@
 namespace App\View\Helper;
 
 use Cake\View\Helper;
-use Cake\View\View;
 
 class LayoutPartsHlpHelper extends Helper
 {
@@ -32,7 +31,7 @@ class LayoutPartsHlpHelper extends Helper
 
     private function layoutHeaderMultiBar()
     {
-        $param_data = [];
+        $param_data = $this->getParamData();
         $cell = $this->cell('HeaderMultiBar', [$param_data])->render();
         
         return $cell;
@@ -40,12 +39,37 @@ class LayoutPartsHlpHelper extends Helper
 
     private function layoutHeaderOneBar()
     {
-        //
+        $param_data = $this->getParamData();
     }
 
-    private function createLayoutFooter()
+    public function createLayoutFooter()
     {
-        //
+        $param_data = $this->getParamData();
+        
+        $footer = PHP_EOL . PHP_EOL;
+        $footer .= $this->cell('Footer', [$param_data])->render();
+
+        $footer .= PHP_EOL . PHP_EOL;
+        $footer .= $this->_View->fetch('footer-additional-elements-block');
+        
+        $footer .= PHP_EOL . PHP_EOL;
+        $footer .= $this->Html->script([
+            '/vendors/bootstrap/bootstrap.min'
+        ]);
+
+        $footer .= PHP_EOL . PHP_EOL;
+        $footer .= $this->Html->scriptBlock(
+            'var __base_url = "' . $this->Url->build('/', true) . '";'
+        );
+
+        $footer .= PHP_EOL . PHP_EOL;
+        $footer .= $this->_View->fetch('scriptBottom');
+        
+        $footer .= PHP_EOL;
+        $footer .= PHP_EOL . '</body>';
+        $footer .= PHP_EOL . '</html>';
+
+        return $footer;
     }
 
     public function createMetaDataHeader()
@@ -81,8 +105,14 @@ class LayoutPartsHlpHelper extends Helper
 
         $header .= PHP_EOL . '</head>';
         $header .= PHP_EOL . '<body>';
+        $header .= PHP_EOL;
 
         return $header;
+    }
+
+    private function getParamData()
+    {
+        return [];
     }
 
 }

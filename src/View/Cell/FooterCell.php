@@ -5,7 +5,7 @@ use Cake\View\Cell;
 
 class FooterCell extends Cell
 {
-    public function display()
+    public function display(array $param_data)
     {
     }
 }

@@ -13,9 +13,15 @@ Router::plugin(
 Router::scope('/', ['plugin' => 'GlobalSerp'], function (RouteBuilder $routes) {
     
     $routes->connect(
-        '/:tp-:trx/', 
+        '/:type-:category/', 
         ['controller' => 'SerpMain', 'action' => 'index'],
-        ['tp' => 'rumah', 'trx' => 'dijual']
+        ['type' => 'rumah', 'category' => 'dijual']
+    );
+
+    $routes->connect(
+        '/:category-:type/', 
+        ['controller' => 'SerpMain', 'action' => 'index'],
+        ['category' => 'sewa', 'type' => 'rumah']
     );
 
 });

@@ -3,10 +3,9 @@ namespace GlobalSerp\View\Cell;
 
 use Cake\View\Cell;
 
-class HeaderCell extends Cell
+class SerpMainSidebarAreaSpecialistCell extends Cell
 {
     public function display()
     {
-        
     }
 }
