@@ -3,6 +3,7 @@ namespace GlobalSerp\View\Cell;
 
 use Cake\View\Cell;
 use Cake\ORM\TableRegistry;
+use GlobalSerp\Repository\ListingsRepository;
 use GlobalSerp\View\GlobalSerpParamsParseTrait;
 
 class SerpMainListingsCell extends Cell
@@ -15,26 +16,26 @@ class SerpMainListingsCell extends Cell
     }
 
     private function setupListings(array $options) {
-        $tabelo = TableRegistry::get('GlobalSerp.Tabelo');
+        $listingRepo = new ListingsRepository();
         
         // Retrieve Premier listings
-        $data_premier = $tabelo->dataPremiere(
+        $data_premier = $listingRepo->dataPremiere(
             $this->ph()->getPropertyTypeCode(), 
             $this->ph()->getPropertyTrxCode()
         );
 
-        $data_premier_count = $tabelo->dataPremiereCount(
+        $data_premier_count = $listingRepo->dataPremiereCount(
             $this->ph()->getPropertyTypeCode(), 
             $this->ph()->getPropertyTrxCode()
         );
 
         // Retrieve General listings
-        $data_general_count = $tabelo->dataGeneralCount(
+        $data_general_count = $listingRepo->dataGeneralCount(
             $this->ph()->getPropertyTypeCode(), 
             $this->ph()->getPropertyTrxCode()
         );
 
-        $data_general = $tabelo->dataGeneral(
+        $data_general = $listingRepo->dataGeneral(
             $this->ph()->getPropertyTypeCode(), 
             $this->ph()->getPropertyTrxCode(), 
             $options['rows_per_page'], 
