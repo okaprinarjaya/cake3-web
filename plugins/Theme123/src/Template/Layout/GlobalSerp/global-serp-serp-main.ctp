@@ -85,7 +85,7 @@ echo $this->Form->end();
                     <!-- PAGINATOR START -->
                     <div id="paginator-container">
                         <?php
-                        echo $this->fetch('paginator');
+                        echo $this->cell('GlobalSerp.SerpMainPagination', [['rows_per_page' => 6]])->render();
                         ?>
                     </div>
                     <!-- PAGINATOR END -->
