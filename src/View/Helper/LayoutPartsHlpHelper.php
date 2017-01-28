@@ -40,6 +40,7 @@ class LayoutPartsHlpHelper extends Helper
     private function layoutHeaderOneBar()
     {
         $param_data = $this->getParamData();
+        return '';
     }
 
     public function createLayoutFooter()

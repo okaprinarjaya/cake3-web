@@ -8,8 +8,6 @@ class SerpMainController extends AppController
 {
     use CellTrait;
 
-    public $helpers = ['LayoutPartsHlp' => ['header_menubar_type' => 'multibar']];
-
     public function initialize()
     {
         parent::initialize();
@@ -19,7 +17,11 @@ class SerpMainController extends AppController
     public function beforeRender(\Cake\Event\Event $event)
     {
         parent::beforeRender($event);
-        $this->viewBuilder()->helpers(['GlobalSerp.GlobalSerpParamsParseHlp']);
+        $this->viewBuilder()->helpers([
+            'GlobalSerp.GlobalSerpParamsParseHlp',
+            'LayoutPartsHlp' => ['header_menubar_type' => 'multibar']
+        ]);
+
         $this->viewBuilder()->layout('GlobalSerp/global-serp-serp-main');
     }
 

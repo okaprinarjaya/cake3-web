@@ -48,14 +48,6 @@ class SerpMainListingsCell extends Cell
         
         // Send data to view
         $this->set(compact('data_general', 'data_premier', 'total_rows_found'));
-
-        /*
-        $this->controller->request['paginator_hlp_data'] = array(
-            'total_rows_found' => $total_rows_found,
-            'rows_per_page' => $options['rows_per_page']
-        );
-
-        $this->controller->helpers[] = 'SerpOld.SerpOldListingsHlp';*/
     }
 
 }
