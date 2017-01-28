@@ -5,7 +5,7 @@ use GlobalSerp\Controller\AppController;
 use Cake\View\CellTrait;
 
 class SerpMainController extends AppController
-{
+{;
     use CellTrait;
 
     public function initialize()
